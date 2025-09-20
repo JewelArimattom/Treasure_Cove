@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag, ArrowRight, Trash2, Coins } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getFeaturedProducts } from '../data/products';
+import { getFeaturedProducts, getProductById, getRelatedProducts } from '../data/products';
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
