@@ -13,7 +13,7 @@ const NavBar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-0 left-0 right-0 z-50 transition-colors duration-300 bg-[#0a192f]/90 backdrop-blur-md border-b border-amber-700/30"
+      className="sticky top-0 left-0 right-0 z-50 transition-colors duration-800 bg-[#0a192f] backdrop-blur-md border-b border-amber-700/30"
       style={{cursor: 'url("/images/ship-wheel-cursor.svg"), pointer'}}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">

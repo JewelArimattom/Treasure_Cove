@@ -22,11 +22,11 @@ export default function Home() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-[#0a192f] text-amber-300" style={{cursor: 'url(""), pointer'}}>
-        <div className="animate-bounce mb-6">
-          <img src="" alt="Loading..." className="w-20 h-20" />
+        <div className="animate-bounce mb-6">  
+          <Telescope className="w-12 h-12" />   
         </div>
-        <h2 className="text-3xl font-bold tracking-wide font-pirate">Unlocking Treasure...</h2>
-        <p className="text-amber-400 mt-2">Preparing your map!</p>
+        <h2 className="text-3xl font-bold tracking-wide font-pirate">Loading...</h2>
+        <p className="text-amber-400 mt-2">Preparing your treasures!</p>
       </div>
     );
   }
@@ -87,20 +87,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-20 bg-[#0a192f]/90 backdrop-blur-md border-b border-amber-900">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex-1 max-w-2xl">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-600" size={20} />
-            <input
-              type="text"
-              placeholder="Search for treasures..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-amber-900/30 border-2 border-amber-700/50 rounded-full py-3 pl-10 pr-4 text-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-500/50 placeholder-amber-400/50 font-pirate"
-            />
-          </div>
-        </div>
-      </div>
+
     </header>
   );
 };
