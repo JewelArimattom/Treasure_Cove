@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    // "baseUrl" tells your editor that the root of your project is this current directory (".").
+    // This is the starting point for the path shortcut below.
+    "baseUrl": ".",
+
+    // "paths" lets you create shortcuts, or "aliases", for your import paths.
+    // This helps keep your import statements clean and short.
+    "paths": {
+      // This line creates the "@/*" alias.
+      // It means that any import starting with "@/" should look inside the "src/" folder.
+      // So, instead of a messy import like: import MyComponent from '../../components/MyComponent'
+      // you can use a clean one: import MyComponent from '@/components/MyComponent'
+      "@/*": [
+        "src/*"
+      ]
+    }
+  }
+}
+
