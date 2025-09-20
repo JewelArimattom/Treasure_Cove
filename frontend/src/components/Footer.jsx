@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Copyright Info */}
           <p className="text-sm text-center md:text-left mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} JEWEL Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} ElectroHub Inc. All rights reserved.
           </p>
 
           {/* Footer Links */}

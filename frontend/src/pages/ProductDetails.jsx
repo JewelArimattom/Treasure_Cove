@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingCart, Heart, Star, Truck, Shield, RotateCcw, Plus, Minus } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getProductById, getRelatedProducts } from '../data/products';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -9,66 +10,27 @@ const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   
-  // Mock product data - in a real app, this would come from an API
-  const product = {
-    id: 1,
-    name: "UltraVision 4K Smart TV",
-    price: 899.99,
-    rating: 4.8,
-    reviews: 142,
-    images: [
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600",
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&angle=30",
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&angle=60",
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&angle=90"
-    ],
-    category: "TV & Home Theater",
-    description: "Experience breathtaking 4K resolution with our UltraVision Smart TV. Featuring HDR10+ and Dolby Vision for stunning contrast and colors, this TV transforms your living room into a home theater.",
-    features: [
-      "65-inch 4K Ultra HD Display",
-      "Quantum Dot Technology for vibrant colors",
-      "Smart TV with built-in streaming apps",
-      "Voice control compatible",
-      "Dolby Atmos sound technology"
-    ],
-    specifications: {
-      "Screen Size": "65 inches",
-      "Resolution": "3840 x 2160 pixels",
-      "Refresh Rate": "120Hz",
-      "Connectivity": "Wi-Fi, Bluetooth, HDMI 2.1, USB",
-      "Smart Platform": "WebOS",
-      "HDR": "HDR10, HLG, Dolby Vision"
-    },
-    inStock: true,
-    warranty: "2 years manufacturer warranty"
-  };
+  // Get product data from static data
+  const product = getProductById(id);
+  const relatedProducts = getRelatedProducts(id);
 
-  const relatedProducts = [
-    {
-      id: 5,
-      name: "SoundBar Pro",
-      price: 249.99,
-      rating: 4.6,
-      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300",
-      category: "Audio"
-    },
-    {
-      id: 6,
-      name: "Streaming Device 4K",
-      price: 79.99,
-      rating: 4.4,
-      image: "https://images.unsplash.com/photo-1593118247619-e2d6f056869e?w=300",
-      category: "Accessories"
-    },
-    {
-      id: 7,
-      name: "TV Wall Mount",
-      price: 89.99,
-      rating: 4.7,
-      image: "https://images.unsplash.com/photo-1592921870789-04563d55041c?w=300",
-      category: "Accessories"
-    },
-  ];
+  // Handle case where product is not found
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Product Not Found</h1>
+          <p className="text-gray-400 mb-6">The product you're looking for doesn't exist.</p>
+          <button 
+            onClick={() => navigate('/')}
+            className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-3 px-6 rounded-lg"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
@@ -211,7 +173,7 @@ const ProductDetails = () => {
               </div>
               <div className="flex items-center text-sm text-gray-400">
                 <Shield size={18} className="mr-2" />
-                2-year warranty
+                {product.warranty}
               </div>
             </div>
           </div>
@@ -236,34 +198,34 @@ const ProductDetails = () => {
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-6">You might also like</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {relatedProducts.map((product) => (
+            {relatedProducts.map((relatedProduct) => (
               <motion.div
-                key={product.id}
+                key={relatedProduct.id}
                 whileHover={{ y: -5 }}
                 className="bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700 hover:border-cyan-500 transition-colors cursor-pointer"
-                onClick={() => navigate(`/product/${product.id}`)}
+                onClick={() => navigate(`/product/${relatedProduct.id}`)}
               >
                 <div className="h-48 bg-slate-800 overflow-hidden">
                   <img 
-                    src={product.image} 
-                    alt={product.name}
+                    src={relatedProduct.images[0]} 
+                    alt={relatedProduct.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
-                  <p className="text-sm text-cyan-400 mb-1">{product.category}</p>
-                  <h3 className="font-semibold text-white mb-2">{product.name}</h3>
+                  <p className="text-sm text-cyan-400 mb-1">{relatedProduct.category}</p>
+                  <h3 className="font-semibold text-white mb-2">{relatedProduct.name}</h3>
                   <div className="flex items-center mb-3">
                     {[...Array(5)].map((_, i) => (
                       <Star 
                         key={i} 
                         size={14} 
-                        fill={i < Math.floor(product.rating) ? "#ffc107" : "none"} 
+                        fill={i < Math.floor(relatedProduct.rating) ? "#ffc107" : "none"} 
                         className="text-yellow-400" 
                       />
                     ))}
                   </div>
-                  <div className="text-lg font-bold text-white">${product.price.toFixed(2)}</div>
+                  <div className="text-lg font-bold text-white">${relatedProduct.price.toFixed(2)}</div>
                 </div>
               </motion.div>
             ))}
@@ -275,4 +237,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-

@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Search, ShoppingCart, Heart, Star } from 'lucide-react';
 import PixelBlast from './PixelBlast';
 import { useNavigate } from 'react-router-dom';
+import { categories, getFeaturedProducts } from '../data/products';
 
 // Main Home Component
 export default function Home() {
+  const featuredProductsRef = useRef(null);
+
+  const scrollToFeaturedProducts = () => {
+    featuredProductsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="bg-slate-900 text-gray-100 font-sans antialiased">
       <div className="relative min-h-screen overflow-hidden">
@@ -16,9 +23,9 @@ export default function Home() {
 
         <main className="relative z-10">
           <Header />
-          <HeroSection />
+          <HeroSection onShopNow={scrollToFeaturedProducts} />
           <CategoriesSection />
-          <FeaturedProducts />
+          <FeaturedProducts ref={featuredProductsRef} />
         </main>
       </div>
     </div>
@@ -59,7 +66,10 @@ const Header = () => {
           <button className="relative text-gray-300 hover:text-white">
             <Heart size={24} />
           </button>
-          <button className="relative text-gray-300 hover:text-white">
+          <button 
+            className="relative text-gray-300 hover:text-white"
+            onClick={() => navigate('/cart')}
+          >
             <ShoppingCart size={24} />
             <span className="absolute -top-2 -right-2 bg-cyan-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               3
@@ -72,7 +82,7 @@ const Header = () => {
 };
 
 // Hero Section Component
-const HeroSection = () => {
+const HeroSection = ({ onShopNow }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.4 } },
@@ -112,6 +122,7 @@ const HeroSection = () => {
             whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgb(45 212 191)" }}
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300"
+            onClick={onShopNow}
           >
             Shop Now <ArrowRight className="inline-block ml-2 -mr-1" size={20} />
           </motion.button>
@@ -123,15 +134,6 @@ const HeroSection = () => {
 
 // Categories Section Component
 const CategoriesSection = () => {
-  const categories = [
-    { name: "Smartphones", icon: "📱", count: 124 },
-    { name: "Laptops", icon: "💻", count: 87 },
-    { name: "Headphones", icon: "🎧", count: 64 },
-    { name: "Smart Watches", icon: "⌚", count: 52 },
-    { name: "Cameras", icon: "📷", count: 43 },
-    { name: "Gaming", icon: "🎮", count: 76 },
-  ];
-
   return (
     <section className="py-16 px-6">
       <div className="container mx-auto">
@@ -155,52 +157,18 @@ const CategoriesSection = () => {
 };
 
 // Featured Products Component
-const FeaturedProducts = () => {
+const FeaturedProducts = React.forwardRef((props, ref) => {
   const navigate = useNavigate();
-  
-  const products = [
-    {
-      id: 1,
-      name: "UltraVision 4K Smart TV",
-      price: 899.99,
-      rating: 4.8,
-      image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400",
-      category: "TV & Home Theater"
-    },
-    {
-      id: 2,
-      name: "ProGamer Wireless Headset",
-      price: 129.99,
-      rating: 4.5,
-      image: "https://images.unsplash.com/photo-1585294873684-0e6a17cfc7b5?w=400",
-      category: "Audio"
-    },
-    {
-      id: 3,
-      name: "SpeedRacer Gaming Laptop",
-      price: 1499.99,
-      rating: 4.7,
-      image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400",
-      category: "Computers"
-    },
-    {
-      id: 4,
-      name: "SmartWatch Series 7",
-      price: 349.99,
-      rating: 4.9,
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
-      category: "Wearables"
-    },
-  ];
+  const featuredProducts = getFeaturedProducts();
 
   return (
-    <section className="py-16 px-6 bg-slate-900/50">
+    <section ref={ref} className="py-16 px-6 bg-slate-900/50">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-white text-center mb-4">Featured Products</h2>
         <p className="text-gray-400 text-center mb-12">Discover our most popular items</p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product, index) => (
+          {featuredProducts.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
@@ -212,7 +180,7 @@ const FeaturedProducts = () => {
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={product.image} 
+                  src={product.images[0]} 
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
@@ -260,4 +228,4 @@ const FeaturedProducts = () => {
       </div>
     </section>
   );
-};
+});

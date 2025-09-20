@@ -2,41 +2,38 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag, ArrowRight, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { getProductById, getFeaturedProducts } from '../data/products';
 
 const Cart = () => {
   const navigate = useNavigate();
+  
+  // Initialize cart with some sample items using static data
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      name: "UltraVision 4K Smart TV",
-      price: 899.99,
       quantity: 1,
-      image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400",
-      category: "TV & Home Theater",
-      inStock: true
     },
     {
       id: 2,
-      name: "ProGamer Wireless Headset",
-      price: 129.99,
       quantity: 2,
-      image: "https://images.unsplash.com/photo-1585294873684-0e6a17cfc7b5?w=400",
-      category: "Audio",
-      inStock: true
     },
     {
       id: 4,
-      name: "SmartWatch Series 7",
-      price: 349.99,
       quantity: 1,
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
-      category: "Wearables",
-      inStock: true
     }
   ]);
 
+  // Get full product data for cart items
+  const cartWithProductData = cartItems.map(cartItem => {
+    const product = getProductById(cartItem.id);
+    return {
+      ...product,
+      quantity: cartItem.quantity
+    };
+  });
+
   // Calculate cart totals
-  const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const subtotal = cartWithProductData.reduce((total, item) => total + (item.price * item.quantity), 0);
   const shipping = subtotal > 0 ? 15.99 : 0;
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + shipping + tax;
@@ -58,6 +55,9 @@ const Cart = () => {
   const clearCart = () => {
     setCartItems([]);
   };
+
+  // Get suggested products for empty cart and recommendations
+  const suggestedProducts = getFeaturedProducts(4);
 
   if (cartItems.length === 0) {
     return (
@@ -121,7 +121,7 @@ const Cart = () => {
               <h2 className="text-xl font-bold text-white mb-6">Cart Items ({cartItems.length})</h2>
               
               <AnimatePresence>
-                {cartItems.map((item) => (
+                {cartWithProductData.map((item) => (
                   <motion.div
                     key={item.id}
                     initial={{ opacity: 0, y: 20 }}
@@ -132,7 +132,7 @@ const Cart = () => {
                   >
                     <div className="w-24 h-24 rounded-lg overflow-hidden bg-slate-700 flex-shrink-0">
                       <img 
-                        src={item.image} 
+                        src={item.images[0]} 
                         alt={item.name}
                         className="w-full h-full object-cover"
                       />
@@ -232,40 +232,11 @@ const Cart = () => {
           </div>
         </div>
         
-        {/* Recently Viewed Items */}
+        {/* You might also like */}
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-white mb-6">You might also like</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              {
-                id: 5,
-                name: "Wireless Earbuds",
-                price: 89.99,
-                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300",
-                category: "Audio"
-              },
-              {
-                id: 6,
-                name: "Tablet Pro",
-                price: 499.99,
-                image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300",
-                category: "Tablets"
-              },
-              {
-                id: 7,
-                name: "Gaming Console",
-                price: 399.99,
-                image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=300",
-                category: "Gaming"
-              },
-              {
-                id: 8,
-                name: "Bluetooth Speaker",
-                price: 79.99,
-                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300",
-                category: "Audio"
-              }
-            ].map((product) => (
+            {suggestedProducts.map((product) => (
               <motion.div
                 key={product.id}
                 whileHover={{ y: -5 }}
@@ -274,7 +245,7 @@ const Cart = () => {
               >
                 <div className="h-40 bg-slate-800 overflow-hidden">
                   <img 
-                    src={product.image} 
+                    src={product.images[0]} 
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
