@@ -2,6 +2,33 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ShoppingCart, Heart, Star, Anchor, MapPin, Ship, Coins, Telescope } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { getFeaturedProducts } from '../data/products';
+import { useCart } from '../context/CartContext';
+
+// Cart Button Component
+const CartButton = ({ navigate }) => {
+  const { cartCount } = useCart();
+  
+  return (
+    <motion.button 
+      className="relative text-amber-500 hover:text-amber-300"
+      onClick={() => navigate('/cart')}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <ShoppingCart size={24} />
+      {cartCount > 0 && (
+        <motion.span
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute -top-2 -right-2 bg-red-600 text-amber-100 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
+        >
+          {cartCount}
+        </motion.span>
+      )}
+    </motion.button>
+  );
+};
 
 // Main Home Component
 export default function Home() {
@@ -19,9 +46,9 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0a192f] text-amber-300" style={{cursor: 'url("/images/ship-wheel-cursor.svg"), pointer'}}>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0a192f] text-amber-300" style={{cursor: 'url(""), pointer'}}>
         <div className="animate-bounce mb-6">
-          <img src="/images/treasure-chest.svg" alt="Loading..." className="w-20 h-20" />
+          <img src="" alt="Loading..." className="w-20 h-20" />
         </div>
         <h2 className="text-3xl font-bold tracking-wide font-pirate">Unlocking Treasure...</h2>
         <p className="text-amber-400 mt-2">Preparing your map!</p>
@@ -30,14 +57,41 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-[#0a192f] text-amber-100 min-h-screen" style={{cursor: 'url("/images/ship-wheel-cursor.svg"), pointer'}}>
+    <div className="bg-gradient-to-b from-[#0a192f] via-[#112240] to-[#0a192f] text-amber-100 min-h-screen" style={{cursor: 'url(""), pointer'}}>
       <div className="relative min-h-screen overflow-hidden">
-        {/* Pirate Background */}
+        {/* Pirate Background with effects */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[#0a192f] opacity-90"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1564845654222-d437f029c5c4?q=80&w=1171&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
-          {/* Ocean waves animation */}
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-[url('/images/waves.png')] bg-repeat-x bg-auto animate-wave"></div>
+          {/* Base gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f]/90 via-[#112240]/80 to-[#0a192f]/90"></div>
+          
+          {/* Animated stars/fireflies effect */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(50)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-amber-300/50 rounded-full animate-firefly"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${4 + Math.random() * 6}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Textured overlay */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+          
+          {/* Ocean background with parallax */}
+          <div 
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1564845654222-d437f029c5c4?q=80&w=1171&auto=format&fit=crop')] 
+            bg-cover bg-center mix-blend-overlay opacity-30 animate-parallax"
+          ></div>
+          
+          {/* Enhanced ocean waves animation */}
+          <div className="absolute bottom-0 left-0 right-0">
+          </div>
         </div>
 
         <main className="relative z-10">
@@ -65,7 +119,6 @@ const Header = () => {
           className="text-3xl font-bold text-amber-400 cursor-pointer font-pirate flex items-center"
           onClick={() => navigate('/')}
         >
-          <img src="/images/ship-wheel.svg" alt="ship wheel" className="w-10 h-10 mr-2 animate-spin-slow" />
           Treasure Cove
         </motion.div>
         
@@ -89,15 +142,7 @@ const Header = () => {
           <button className="relative text-amber-500 hover:text-amber-300">
             <Heart size={24} />
           </button>
-          <button 
-            className="relative text-amber-500 hover:text-amber-300"
-            onClick={() => navigate('/cart')}
-          >
-            <ShoppingCart size={24} />
-            <span className="absolute -top-2 -right-2 bg-red-600 text-amber-100 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
-              3
-            </span>
-          </button>
+          <CartButton navigate={navigate} />
         </div>
       </div>
     </header>
@@ -119,8 +164,6 @@ const HeroSection = ({ onShopNow }) => {
   return (
     <section className="h-[70vh] flex items-center justify-center text-center relative">
       {/* Floating ships in the background */}
-      <img src="/images/pirate-ship.png" alt="Pirate Ship" className="absolute left-10 top-20 w-40 opacity-70 animate-float-slow" />
-      <img src="/images/small-boat.png" alt="Small Boat" className="absolute right-20 bottom-20 w-28 opacity-60 animate-float" />
       
       <motion.div
         variants={containerVariants}
@@ -134,7 +177,6 @@ const HeroSection = ({ onShopNow }) => {
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500 relative">
             X Marks
-            <img src="/images/parrot.svg" alt="parrot" className="absolute -right-16 -top-8 w-16 h-16 animate-bounce" />
           </span>
           <br />
           <span className="text-amber-300">The Spot</span>
@@ -213,45 +255,8 @@ const CategoriesSection = () => {
 // Featured Products Component
 const FeaturedProducts = React.forwardRef((props, ref) => {
   const navigate = useNavigate();
-  
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Ancient Gold Doubloons",
-      price: 299.99,
-      rating: 4.9,
-      images: ["https://images.unsplash.com/photo-1579541704386-2d5c6f695e9d?w=400"],
-      category: "Jewelry",
-      description: "Authentic Spanish gold doubloons recovered from shipwrecks."
-    },
-    {
-      id: 2,
-      name: "Pirate Captain's Spyglass",
-      price: 159.99,
-      rating: 4.7,
-      images: ["https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400"],
-      category: "Pirate Gear",
-      description: "Brass telescope used by legendary pirates to spot treasure."
-    },
-    {
-      id: 3,
-      name: "Treasure Map Collection",
-      price: 89.99,
-      rating: 4.5,
-      images: ["https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400"],
-      category: "Treasure Maps",
-      description: "Set of mysterious maps leading to hidden treasures."
-    },
-    {
-      id: 4,
-      name: "Rare Caribbean Rum",
-      price: 79.99,
-      rating: 4.8,
-      images: ["https://images.unsplash.com/photo-1470338745628-171cf53ade41?w=400"],
-      category: "Rum & Provisions",
-      description: "Aged rum from hidden Caribbean distilleries."
-    },
-  ];
+  const { addToCart } = useCart();
+  const featuredProducts = getFeaturedProducts(4);
 
   return (
     <section ref={ref} className="py-16 px-6 bg-amber-900/20">
@@ -281,15 +286,15 @@ const FeaturedProducts = React.forwardRef((props, ref) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden group">
                 <img 
                   src={product.images[0]} 
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
                 <button 
-                  className="absolute top-3 right-3 bg-amber-900/80 rounded-full p-2 hover:bg-amber-700 transition-colors"
+                  className="absolute top-3 right-3 bg-amber-900/80 backdrop-blur-sm rounded-full p-2 hover:bg-amber-700 transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     // Add to wishlist logic here
@@ -297,35 +302,49 @@ const FeaturedProducts = React.forwardRef((props, ref) => {
                 >
                   <Heart size={18} className="text-amber-300" />
                 </button>
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-amber-900 to-transparent">
+                  <p className="text-sm text-amber-400/90 font-pirate">{product.category}</p>
+                </div>
               </div>
               
               <div className="p-4">
-                <p className="text-sm text-amber-500 mb-1 font-pirate">{product.category}</p>
-                <h3 className="font-semibold text-amber-200 mb-2 font-pirate">{product.name}</h3>
+                <h3 className="font-semibold text-amber-200 text-lg mb-2 line-clamp-1 hover:text-amber-300 transition-colors font-pirate">
+                  {product.name}
+                </h3>
                 
+                <p className="text-sm text-amber-400/70 mb-3 line-clamp-2">
+                  {product.description}
+                </p>
+
                 <div className="flex items-center mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      size={16} 
-                      fill={i < Math.floor(product.rating) ? "#f59e0b" : "none"} 
-                      className="text-amber-400" 
-                    />
-                  ))}
-                  <span className="text-sm text-amber-500 ml-2">({product.rating})</span>
+                  <div className="flex mr-2">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        size={16} 
+                        fill={i < Math.floor(product.rating) ? "#f59e0b" : "none"} 
+                        className="text-amber-400" 
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-amber-500">({product.reviews} reviews)</span>
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold text-amber-300 font-pirate">
-                    <Coins className="inline-block w-5 h-5 mr-1" />
-                    {product.price.toFixed(2)}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xl font-bold text-amber-300 font-pirate">
+                      <Coins className="inline-block w-5 h-5 mr-1" />
+                      {product.price.toFixed(2)}
+                    </span>
+                    <span className="text-xs text-amber-500">{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
+                  </div>
                   <button 
-                    className="bg-amber-700 hover:bg-amber-600 text-amber-100 rounded-full p-2 transition-colors"
+                    className="bg-amber-700 hover:bg-amber-600 text-amber-100 rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     onClick={(e) => {
                       e.stopPropagation();
-                      // Add to cart logic here
+                      addToCart(product);
                     }}
+                    disabled={!product.inStock}
                   >
                     <ShoppingCart size={18} />
                   </button>
@@ -360,6 +379,10 @@ const styles = `
     0% { background-position: 0 0; }
     100% { background-position: 1000px 0; }
   }
+  @keyframes wave-reverse {
+    0% { background-position: 1000px 0; }
+    100% { background-position: 0 0; }
+  }
   @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -370,14 +393,45 @@ const styles = `
     50% { transform: translateY(-5px); }
     100% { transform: translateY(0px); }
   }
+  @keyframes firefly {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(100px, -100px);
+      opacity: 0;
+    }
+  }
+  @keyframes parallax {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
   .animate-wave {
     animation: wave 20s linear infinite;
+  }
+  .animate-wave-reverse {
+    animation: wave-reverse 15s linear infinite;
   }
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
   .animate-float-slow {
     animation: float-slow 6s ease-in-out infinite;
+  }
+  .animate-firefly {
+    animation: firefly var(--duration, 5s) ease-in-out infinite;
+    opacity: 0;
+  }
+  .animate-parallax {
+    animation: parallax 15s ease-in-out infinite;
   }
   .font-pirate {
     font-family: 'Pirata One', cursive, serif;

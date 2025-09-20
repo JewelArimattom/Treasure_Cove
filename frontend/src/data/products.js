@@ -1,304 +1,304 @@
 // data/products.js
 export const categories = [
-  { name: "Smartphones", icon: "📱", count: 124 },
-  { name: "Laptops", icon: "💻", count: 87 },
-  { name: "Headphones", icon: "🎧", count: 64 },
-  { name: "Smart Watches", icon: "⌚", count: 52 },
-  { name: "Cameras", icon: "📷", count: 43 },
-  { name: "Gaming", icon: "🎮", count: 76 },
+  { name: "Pirate Weapons", icon: "⚔️", count: 24 },
+  { name: "Treasure Maps", icon: "🗺️", count: 18 },
+  { name: "Ship Equipment", icon: "⚓", count: 27 },
+  { name: "Pirate Attire", icon: "👒", count: 35 },
+  { name: "Rum & Provisions", icon: "🍷", count: 23 },
+  { name: "Jewelry & Gold", icon: "💎", count: 31 },
 ];
 
 export const products = [
   {
     id: 1,
-    name: "UltraVision 4K Smart TV",
-    price: 899.99,
-    rating: 4.8,
+    name: "Ancient Gold Doubloons",
+    price: 299.99,
+    rating: 4.9,
     reviews: 142,
     images: [
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600",
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&angle=30",
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&angle=60",
-      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&angle=90"
+      "https://images.unsplash.com/photo-1579541704386-2d5c6f695e9d?w=600",
+      "https://images.unsplash.com/photo-1579541704386-2d5c6f695e9d?w=600&angle=30",
+      "https://images.unsplash.com/photo-1579541704386-2d5c6f695e9d?w=600&angle=60",
+      "https://images.unsplash.com/photo-1579541704386-2d5c6f695e9d?w=600&angle=90"
     ],
-    category: "TV & Home Theater",
-    description: "Experience breathtaking 4K resolution with our UltraVision Smart TV. Featuring HDR10+ and Dolby Vision for stunning contrast and colors, this TV transforms your living room into a home theater.",
+    category: "Jewelry & Gold",
+    description: "Authentic Spanish gold doubloons recovered from shipwrecks in the Caribbean Sea. Each coin has a unique history and comes with a certificate of authenticity.",
     features: [
-      "65-inch 4K Ultra HD Display",
-      "Quantum Dot Technology for vibrant colors",
-      "Smart TV with built-in streaming apps",
-      "Voice control compatible",
-      "Dolby Atmos sound technology"
+      "24-karat gold purity",
+      "Dated between 1650-1750",
+      "Recovered from verified shipwrecks",
+      "Certificate of authenticity included",
+      "Individually numbered"
     ],
     specifications: {
-      "Screen Size": "65 inches",
-      "Resolution": "3840 x 2160 pixels",
-      "Refresh Rate": "120Hz",
-      "Connectivity": "Wi-Fi, Bluetooth, HDMI 2.1, USB",
-      "Smart Platform": "WebOS",
-      "HDR": "HDR10, HLG, Dolby Vision"
+      "Material": "24K Gold",
+      "Diameter": "28mm",
+      "Weight": "6.7g each",
+      "Origin": "Spanish Colonial",
+      "Age": "300+ years",
+      "Condition": "Very Fine"
     },
     inStock: true,
-    warranty: "2 years manufacturer warranty"
+    warranty: "Lifetime authenticity guarantee"
   },
   {
     id: 2,
-    name: "ProGamer Wireless Headset",
-    price: 129.99,
-    rating: 4.5,
+    name: "Captain's Brass Spyglass",
+    price: 159.99,
+    rating: 4.7,
     reviews: 89,
     images: [
-      "https://images.unsplash.com/photo-1585294873684-0e6a17cfc7b5?w=600",
-      "https://images.unsplash.com/photo-1585294873684-0e6a17cfc7b5?w=600&angle=30",
-      "https://images.unsplash.com/photo-1585294873684-0e6a17cfc7b5?w=600&angle=60",
-      "https://images.unsplash.com/photo-1585294873684-0e6a17cfc7b5?w=600&angle=90"
+      "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600",
+      "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&angle=30",
+      "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&angle=60",
+      "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&angle=90"
     ],
-    category: "Audio",
-    description: "Immerse yourself in crystal-clear audio with our ProGamer Wireless Headset. Perfect for gaming, music, and calls with advanced noise cancellation.",
+    category: "Ship Equipment",
+    description: "Handcrafted brass telescope used by legendary pirates to spot treasure islands and enemy ships from great distances. Perfect for navigation and exploration.",
     features: [
-      "Active noise cancellation",
-      "50mm dynamic drivers",
-      "25-hour battery life",
-      "Wireless and wired connectivity",
-      "Built-in microphone with noise reduction"
+      "20x magnification power",
+      "Solid brass construction",
+      "Leather wrapping for grip",
+      "Collapsible design",
+      "Brass eyepiece with crystal lens"
     ],
     specifications: {
-      "Driver Size": "50mm",
-      "Frequency Response": "20Hz - 20kHz",
-      "Battery Life": "25 hours",
-      "Connectivity": "Bluetooth 5.0, 3.5mm jack",
-      "Weight": "280g",
-      "Charging": "USB-C fast charging"
+      "Material": "Solid Brass",
+      "Magnification": "20x",
+      "Length": "35cm (extended)",
+      "Weight": "850g",
+      "Lens": "Crystal glass",
+      "Case": "Included leather pouch"
     },
     inStock: true,
-    warranty: "1 year manufacturer warranty"
+    warranty: "5 years craftsmanship warranty"
   },
   {
     id: 3,
-    name: "SpeedRacer Gaming Laptop",
-    price: 1499.99,
-    rating: 4.7,
+    name: "Treasure Map Collection",
+    price: 89.99,
+    rating: 4.5,
     reviews: 156,
     images: [
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&angle=30",
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&angle=60",
-      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&angle=90"
+      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600",
+      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&angle=30",
+      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&angle=60",
+      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&angle=90"
     ],
-    category: "Computers",
-    description: "Unleash your gaming potential with the SpeedRacer Gaming Laptop. Featuring powerful graphics and lightning-fast performance.",
+    category: "Treasure Maps",
+    description: "Set of mysterious maps leading to hidden treasures across the Caribbean. Each map is aged and detailed with secret markings known only to seasoned pirates.",
     features: [
-      "Intel Core i7 processor",
-      "NVIDIA RTX 4060 graphics",
-      "16GB DDR4 RAM",
-      "1TB NVMe SSD",
-      "144Hz refresh rate display"
+      "Aged parchment authentic feel",
+      "Invisible ink reveals",
+      "Coordinates to real locations",
+      "Historical accuracy",
+      "Waterproof casing"
     ],
     specifications: {
-      "Processor": "Intel Core i7-12700H",
-      "Graphics": "NVIDIA GeForce RTX 4060",
-      "RAM": "16GB DDR4",
-      "Storage": "1TB NVMe SSD",
-      "Display": "15.6-inch 144Hz FHD",
-      "Battery": "4-cell 53.5Wh"
+      "Material": "Aged Parchment",
+      "Quantity": "5 maps in set",
+      "Age": "Replica of 17th century",
+      "Water Resistance": "Yes",
+      "Authentication": "Historically accurate",
+      "Storage": "Leather scroll case"
     },
     inStock: true,
-    warranty: "2 years manufacturer warranty"
+    warranty: "Satisfaction guarantee"
   },
   {
     id: 4,
-    name: "SmartWatch Series 7",
-    price: 349.99,
-    rating: 4.9,
+    name: "Rare Caribbean Rum",
+    price: 79.99,
+    rating: 4.8,
     reviews: 203,
     images: [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&angle=30",
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&angle=60",
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&angle=90"
+      "https://images.unsplash.com/photo-1470338745628-171cf53ade41?w=600",
+      "https://images.unsplash.com/photo-1470338745628-171cf53ade41?w=600&angle=30",
+      "https://images.unsplash.com/photo-1470338745628-171cf53ade41?w=600&angle=60",
+      "https://images.unsplash.com/photo-1470338745628-171cf53ade41?w=600&angle=90"
     ],
-    category: "Wearables",
-    description: "Stay connected and track your fitness with the advanced SmartWatch Series 7. Features health monitoring and smart notifications.",
+    category: "Rum & Provisions",
+    description: "Aged rum from hidden Caribbean distilleries following ancient pirate recipes. Smooth with notes of oak, spice, and tropical fruits.",
     features: [
-      "Advanced health monitoring",
-      "GPS and cellular connectivity",
-      "Water resistant to 50 meters",
-      "Always-on Retina display",
-      "Fast charging technology"
+      "Aged 12 years in oak barrels",
+      "Traditional pirate recipe",
+      "Handcrafted in small batches",
+      "Natural ingredients",
+      "Distilled using traditional methods"
     ],
     specifications: {
-      "Display": "45mm Always-On Retina",
-      "Connectivity": "GPS + Cellular",
-      "Water Resistance": "WR50",
-      "Battery Life": "18 hours",
-      "Health Features": "ECG, Blood Oxygen, Heart Rate",
-      "Storage": "32GB"
+      "Age": "12 years",
+      "Volume": "750ml",
+      "Alcohol": "40% ABV",
+      "Origin": "Caribbean",
+      "Aging": "Oak barrels",
+      "Serving": "Room temperature or chilled"
     },
     inStock: true,
-    warranty: "1 year manufacturer warranty"
+    warranty: "Quality guarantee"
   },
   {
     id: 5,
-    name: "Wireless Earbuds",
-    price: 89.99,
-    rating: 4.3,
+    name: "Pirate Cutlass Sword",
+    price: 189.99,
+    rating: 4.6,
     reviews: 67,
     images: [
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600",
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&angle=30",
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&angle=60",
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&angle=90"
+      "https://images.unsplash.com/photo-1579972668140-f7da53eee1dc?w=600",
+      "https://images.unsplash.com/photo-1579972668140-f7da53eee1dc?w=600&angle=30",
+      "https://images.unsplash.com/photo-1579972668140-f7da53eee1dc?w=600&angle=60",
+      "https://images.unsplash.com/photo-1579972668140-f7da53eee1dc?w=600&angle=90"
     ],
-    category: "Audio",
-    description: "True wireless freedom with premium sound quality and all-day comfort.",
+    category: "Pirate Weapons",
+    description: "Authentic replica of a pirate cutlass sword with tempered steel blade and ornate handle. Perfect for display or reenactments.",
     features: [
-      "True wireless design",
-      "Active noise cancellation",
-      "6-hour battery per charge",
-      "Wireless charging case",
-      "Touch controls"
+      "Tempered steel blade",
+      "Ornate brass handle",
+      "Leather-wrapped grip",
+      "Decorative engravings",
+      "Wood and leather scabbard"
     ],
     specifications: {
-      "Driver Size": "11mm",
-      "Battery Life": "6+18 hours with case",
-      "Connectivity": "Bluetooth 5.2",
-      "Water Resistance": "IPX4",
-      "Charging": "Wireless + USB-C",
-      "Weight": "5.4g per earbud"
+      "Blade Length": "75cm",
+      "Total Length": "90cm",
+      "Weight": "1.2kg",
+      "Material": "Tempered steel",
+      "Edge": "Blunt (display only)",
+      "Scabbard": "Included"
     },
     inStock: true,
-    warranty: "1 year manufacturer warranty"
+    warranty: "1 year craftsmanship warranty"
   },
   {
     id: 6,
-    name: "Tablet Pro",
-    price: 499.99,
-    rating: 4.6,
+    name: "Captain's Tricorne Hat",
+    price: 49.99,
+    rating: 4.4,
     reviews: 124,
     images: [
-      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600",
-      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&angle=30",
-      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&angle=60",
-      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&angle=90"
+      "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=600",
+      "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=600&angle=30",
+      "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=600&angle=60",
+      "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=600&angle=90"
     ],
-    category: "Tablets",
-    description: "Professional-grade tablet perfect for creative work and productivity.",
+    category: "Pirate Attire",
+    description: "Authentic replica of a pirate captain's tricorne hat made from genuine leather with decorative feathers and golden trim.",
     features: [
-      "12.9-inch Liquid Retina display",
-      "Apple M2 chip",
-      "All-day battery life",
-      "Apple Pencil compatible",
-      "5G connectivity"
+      "Genuine leather construction",
+      "Decorative golden trim",
+      "Authentic feather accent",
+      "Adjustable inner band",
+      "Weather resistant"
     ],
     specifications: {
-      "Display": "12.9-inch Liquid Retina",
-      "Processor": "Apple M2 chip",
-      "Storage": "128GB - 2TB options",
-      "Connectivity": "Wi-Fi 6E + 5G",
-      "Camera": "12MP Wide + 10MP Ultra Wide",
-      "Battery": "10 hours"
+      "Material": "Genuine Leather",
+      "Sizes": "S, M, L, XL",
+      "Color": "Black with gold trim",
+      "Features": "Adjustable band",
+      "Accessories": "Feather included",
+      "Care": "Wipe clean only"
     },
     inStock: true,
-    warranty: "1 year manufacturer warranty"
+    warranty: "6 months quality guarantee"
   },
   {
     id: 7,
-    name: "Gaming Console",
+    name: "Ship's Wheel Replica",
     price: 399.99,
     rating: 4.8,
     reviews: 287,
     images: [
-      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600",
-      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&angle=30",
-      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&angle=60",
-      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&angle=90"
+      "https://images.unsplash.com/photo-1611251432587-2bf8f0c7ee1a?w=600",
+      "https://images.unsplash.com/photo-1611251432587-2bf8f0c7ee1a?w=600&angle=30",
+      "https://images.unsplash.com/photo-1611251432587-2bf8f0c7ee1a?w=600&angle=60",
+      "https://images.unsplash.com/photo-1611251432587-2bf8f0c7ee1a?w=600&angle=90"
     ],
-    category: "Gaming",
-    description: "Next-generation gaming console with cutting-edge performance and exclusive games.",
+    category: "Ship Equipment",
+    description: "Full-size replica of a classic ship's wheel made from solid oak and brass fittings. Perfect for nautical decor or pirate-themed establishments.",
     features: [
-      "4K gaming at 120fps",
-      "Ray tracing technology",
-      "Ultra-fast SSD",
-      "Backward compatibility",
-      "Immersive 3D audio"
+      "Solid oak construction",
+      "Brass fittings and accents",
+      "Authentic design",
+      "Wall mount included",
+      "Handcrafted details"
     ],
     specifications: {
-      "CPU": "Custom 8-core AMD Zen 2",
-      "GPU": "Custom RDNA 2",
-      "Memory": "16GB GDDR6",
-      "Storage": "825GB SSD",
-      "Output": "4K at 120Hz",
-      "Audio": "Tempest 3D AudioTech"
+      "Diameter": "90cm",
+      "Material": "Solid Oak",
+      "Weight": "15kg",
+      "Finish": "Weathered antique",
+      "Mounting": "Wall bracket included",
+      "Assembly": "Required"
     },
     inStock: true,
-    warranty: "1 year manufacturer warranty"
+    warranty: "2 years craftsmanship warranty"
   },
   {
     id: 8,
-    name: "Bluetooth Speaker",
-    price: 79.99,
-    rating: 4.4,
+    name: "Pirate Treasure Chest",
+    price: 179.99,
+    rating: 4.7,
     reviews: 95,
     images: [
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600",
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&angle=30",
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&angle=60",
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&angle=90"
+      "https://images.unsplash.com/photo-1596524430615-b46475bffa9c?w=600",
+      "https://images.unsplash.com/photo-1596524430615-b46475bffa9c?w=600&angle=30",
+      "https://images.unsplash.com/photo-1596524430615-b46475bffa9c?w=600&angle=60",
+      "https://images.unsplash.com/photo-1596524430615-b46475bffa9c?w=600&angle=90"
     ],
-    category: "Audio",
-    description: "Portable Bluetooth speaker with powerful sound and waterproof design.",
+    category: "Jewelry & Gold",
+    description: "Authentic replica pirate treasure chest with iron bindings, lock and key. Perfect for storing valuables or as a decorative piece.",
     features: [
-      "360-degree sound",
-      "Waterproof design (IP67)",
-      "12-hour battery life",
-      "Voice assistant integration",
-      "Party mode for multiple speakers"
+      "Solid wood construction",
+      "Iron bindings and hardware",
+      "Functional lock with key",
+      "Felt-lined interior",
+      "Authentic distressed finish"
     ],
     specifications: {
-      "Drivers": "Dual 45mm drivers",
-      "Battery Life": "12 hours",
-      "Connectivity": "Bluetooth 5.0",
-      "Water Resistance": "IP67",
-      "Dimensions": "210 x 75 x 75mm",
-      "Weight": "650g"
+      "Dimensions": "40x25x25cm",
+      "Material": "Wood with iron",
+      "Weight": "4.5kg",
+      "Lock": "Functional with key",
+      "Interior": "Felt lined",
+      "Finish": "Distressed antique"
     },
     inStock: true,
-    warranty: "1 year manufacturer warranty"
+    warranty: "1 year craftsmanship warranty"
   }
 ];
 
 export const relatedProducts = [
   {
-    id: 5,
-    name: "SoundBar Pro",
-    price: 249.99,
+    id: 9,
+    name: "Jolly Roger Flag",
+    price: 34.99,
     rating: 4.6,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300",
-    category: "Audio"
+    image: "https://images.unsplash.com/photo-1564982834137-8e29c0c84af9?w=300",
+    category: "Ship Equipment"
   },
   {
-    id: 6,
-    name: "Streaming Device 4K",
-    price: 79.99,
-    rating: 4.4,
-    image: "https://images.unsplash.com/photo-1593118247619-e2d6f056869e?w=300",
-    category: "Accessories"
-  },
-  {
-    id: 7,
-    name: "TV Wall Mount",
+    id: 10,
+    name: "Leather Boots",
     price: 89.99,
-    rating: 4.7,
-    image: "https://images.unsplash.com/photo-1592921870789-04563d55041c?w=300",
-    category: "Accessories"
+    rating: 4.4,
+    image: "https://images.unsplash.com/photo-1542280756-74b2f55e73ab?w=300",
+    category: "Pirate Attire"
   },
   {
-    id: 8,
-    name: "HDMI Cable 4K",
+    id: 11,
+    name: "Pirate Hook Hand",
     price: 29.99,
-    rating: 4.5,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300",
-    category: "Accessories"
+    rating: 4.2,
+    image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=300",
+    category: "Pirate Attire"
+  },
+  {
+    id: 12,
+    name: "Ancient Silver Coins",
+    price: 149.99,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1581351721010-4d6c969fe5c3?w=300",
+    category: "Jewelry & Gold"
   }
 ];
 
