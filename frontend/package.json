@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "overrides": {
+  "three": "0.152.2"
+  },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
     "@react-three/drei": "^9.56.13",
