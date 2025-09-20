@@ -1,34 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Search, ShoppingCart, Heart, Star, Anchor, MapPin, Ship, Coins, Telescope } from 'lucide-react';
+import { Search, Star, Anchor, Ship, Coins, Telescope } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { getFeaturedProducts } from '../data/products';
 import { useCart } from '../context/CartContext';
-
-// Cart Button Component
-const CartButton = ({ navigate }) => {
-  const { cartCount } = useCart();
-  
-  return (
-    <motion.button 
-      className="relative text-amber-500 hover:text-amber-300"
-      onClick={() => navigate('/cart')}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <ShoppingCart size={24} />
-      {cartCount > 0 && (
-        <motion.span
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="absolute -top-2 -right-2 bg-red-600 text-amber-100 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold"
-        >
-          {cartCount}
-        </motion.span>
-      )}
-    </motion.button>
-  );
-};
 
 // Main Home Component
 export default function Home() {
@@ -113,16 +88,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-20 bg-[#0a192f]/90 backdrop-blur-md border-b border-amber-900">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-3xl font-bold text-amber-400 cursor-pointer font-pirate flex items-center"
-          onClick={() => navigate('/')}
-        >
-          Treasure Cove
-        </motion.div>
-        
-        <div className="flex-1 max-w-2xl mx-6">
+        <div className="flex-1 max-w-2xl">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-600" size={20} />
             <input
@@ -133,16 +99,6 @@ const Header = () => {
               className="w-full bg-amber-900/30 border-2 border-amber-700/50 rounded-full py-3 pl-10 pr-4 text-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-500/50 placeholder-amber-400/50 font-pirate"
             />
           </div>
-        </div>
-        
-        <div className="flex items-center space-x-6">
-          <button className="relative text-amber-500 hover:text-amber-300">
-            <MapPin size={24} />
-          </button>
-          <button className="relative text-amber-500 hover:text-amber-300">
-            <Heart size={24} />
-          </button>
-          <CartButton navigate={navigate} />
         </div>
       </div>
     </header>
@@ -293,15 +249,6 @@ const FeaturedProducts = React.forwardRef((props, ref) => {
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <button 
-                  className="absolute top-3 right-3 bg-amber-900/80 backdrop-blur-sm rounded-full p-2 hover:bg-amber-700 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Add to wishlist logic here
-                  }}
-                >
-                  <Heart size={18} className="text-amber-300" />
-                </button>
                 <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-amber-900 to-transparent">
                   <p className="text-sm text-amber-400/90 font-pirate">{product.category}</p>
                 </div>
@@ -338,16 +285,7 @@ const FeaturedProducts = React.forwardRef((props, ref) => {
                     </span>
                     <span className="text-xs text-amber-500">{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
                   </div>
-                  <button 
-                    className="bg-amber-700 hover:bg-amber-600 text-amber-100 rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      addToCart(product);
-                    }}
-                    disabled={!product.inStock}
-                  >
-                    <ShoppingCart size={18} />
-                  </button>
+                  
                 </div>
               </div>
             </motion.div>
@@ -362,7 +300,7 @@ const FeaturedProducts = React.forwardRef((props, ref) => {
             }}
             whileTap={{ scale: 0.95 }}
             className="bg-amber-700 hover:bg-amber-600 text-amber-100 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 border-2 border-amber-500 font-pirate"
-            onClick={() => navigate('/products')}
+            onClick={() => navigate('/list-products')}
           >
             <Ship className="inline-block mr-2" size={20} />
             Explore All Booty

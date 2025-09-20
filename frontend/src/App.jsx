@@ -8,6 +8,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
+import CheckOut from './pages/CheckOut';
+import ProductListPage from './pages/ListProducts';
 import { CartProvider } from './context/CartContext';
 const App = () => {
   return (
@@ -32,6 +34,9 @@ const App = () => {
             <Route path='/about' element={<About />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/list-products" element={<ProductListPage />} />
+            <Route path="/checkout" element={<CheckOut />} />
+
           </Routes>
         </main>
         <Footer />
