@@ -39,8 +39,8 @@ const Contact = () => {
     {
       icon: <Mail size={24} className="text-fuchsia-500" />,
       title: 'Email',
-      detail: 'hello@jewelspices.com',
-      href: 'mailto:hello@jewelspices.com',
+      detail: 'hello@ElectroHub.com',
+      href: 'mailto:hello@.ElectroHubcom',
     },
     {
       icon: <MapPin size={24} className="text-purple-500" />,

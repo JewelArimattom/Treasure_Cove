@@ -36,8 +36,7 @@ const About = () => {
             className="text-4xl md:text-6xl font-extrabold text-center text-white leading-tight mb-12"
           >
             About{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-500">
-              JEWEL
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-fuchsia-500">ElectroHub
             </span>
           </motion.h1>
 
@@ -59,14 +58,16 @@ const About = () => {
             >
               <h2 className="text-2xl font-bold text-white">The Essence </h2>
               <p>
-                Welcome to JEWEL! We bring you the rich, authentic flavors of Kerala’s finest spices, straight from nature to your kitchen. Nestled in the heart of India's spice capital, we are committed to delivering fresh, pure, and aromatic spices sourced directly from local farmers.
+                About ElectroHub: Powering Your World
+Welcome to ElectroHub, your ultimate destination for the latest and greatest in electronics. We're more than just a store; we're a community of tech enthusiasts, innovators, and early adopters dedicated to bringing you the future, today.
+
+Our Mission
+Our mission is simple: to connect you with high-quality, cutting-edge electronics that enhance and simplify your life. In a world that's constantly evolving, we believe that everyone deserves access to technology that is not only powerful and innovative but also reliable and intuitive. From the everyday essentials to the extraordinary gadgets you've only dreamed of, ElectroHub is here to power your world.
+
+The ElectroHub Story
+ElectroHub was born from a passion for technology and a desire to create a better electronics shopping experience. Tired of navigating cluttered websites and biased reviews, our founders set out to build a hub—a central place where customers could find expertly curated products, honest advice, and a seamless shopping journey. We started small, with a handful of products and a big vision. Today, we've grown into a trusted source for tech lovers across the country, but our core values remain the same.
               </p>
-              <p>
-                With a deep-rooted passion for quality and sustainability, we ensure that every spice we offer is handpicked, sun-dried, and carefully processed to retain its natural essence. From the bold warmth of black pepper to the golden richness of turmeric, our products capture the true spirit of Kerala’s spice heritage.
-              </p>
-              <p>
-                Join us in celebrating the legacy of Kerala’s spices, where tradition meets purity in every pinch.
-              </p>
+              
             </motion.div>
           </div>
         </motion.div>

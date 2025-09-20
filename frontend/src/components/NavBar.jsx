@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <NavLink to="/" className="text-2xl font-bold tracking-wider text-white">
-          JEWEL
+          ElectroHub
         </NavLink>
 
         {/* Desktop Navigation Links */}

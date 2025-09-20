@@ -76,6 +76,8 @@ const ProductDetails = () => {
   const addToCart = () => {
     // In a real app, this would dispatch to a cart context or Redux
     console.log(`Added ${quantity} of ${product.name} to cart`);
+    // Redirect to the cart page
+    navigate('/cart');
   };
 
   return (
@@ -273,3 +275,4 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
