@@ -9,13 +9,11 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "overrides": {
-  "three": "0.152.2"
-  },
+  
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
     "@react-three/drei": "^9.56.13",
-    "@react-three/fiber": "^8.13.0",
+    "@react-three/fiber": "^8.15.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
