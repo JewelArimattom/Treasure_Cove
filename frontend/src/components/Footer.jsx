@@ -16,14 +16,14 @@ const Footer = () => {
           {/* Footer Links */}
           <div className="flex space-x-6 font-pirate">
             <NavLink 
-              to="/privacy-policy" 
+              to="/" 
               className="text-sm hover:text-amber-200 transition-colors duration-300 flex items-center"
             >
               <Anchor className="mr-1" size={14} />
               Pirate's Code
             </NavLink>
             <NavLink 
-              to="/terms-of-service" 
+              to="/" 
               className="text-sm hover:text-amber-200 transition-colors duration-300 flex items-center"
             >
               <Ship className="mr-1" size={14} />
