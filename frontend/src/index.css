@@ -3,6 +3,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Pirate';
+  src: url('/fonts/pirate.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'PirateScript';
+  src: url('/fonts/pirate-script.woff2') format('woff2');
+}
+
+@layer utilities {
+  .animate-wave {
+    animation: wave 8s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -3,12 +3,16 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ShoppingCart, Heart, Star, Truck, Shield, RotateCcw, Plus, Minus } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProductById, getRelatedProducts } from '../data/products';
+import { useCart } from '../context/CartContext';
+import toast from 'react-hot-toast';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart: addItemToCart } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   
   // Get product data from static data
   const product = getProductById(id);
@@ -35,11 +39,29 @@ const ProductDetails = () => {
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
-  const addToCart = () => {
-    // In a real app, this would dispatch to a cart context or Redux
-    console.log(`Added ${quantity} of ${product.name} to cart`);
-    // Redirect to the cart page
-    navigate('/cart');
+  const handleAddToCart = async () => {
+    setIsAddingToCart(true);
+    try {
+      await addItemToCart({
+        ...product,
+        quantity
+      });
+      
+      toast.success(
+        <div className="flex items-center">
+          <ShoppingCart className="mr-2" size={18} />
+          <span>{quantity} {quantity === 1 ? 'item' : 'items'} added to cart</span>
+        </div>,
+        {
+          duration: 2000,
+          icon: '🛒',
+        }
+      );
+    } catch (error) {
+      toast.error('Failed to add item to cart');
+    } finally {
+      setIsAddingToCart(false);
+    }
   };
 
   return (
@@ -149,11 +171,12 @@ const ProductDetails = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={addToCart}
-                  className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                  onClick={handleAddToCart}
+                  disabled={isAddingToCart}
+                  className={`flex-1 ${isAddingToCart ? 'bg-cyan-700' : 'bg-cyan-600 hover:bg-cyan-500'} text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center`}
                 >
-                  <ShoppingCart size={20} className="mr-2" />
-                  Add to Cart
+                  <ShoppingCart size={20} className={`mr-2 ${isAddingToCart ? 'animate-bounce' : ''}`} />
+                  {isAddingToCart ? 'Adding...' : 'Add to Cart'}
                 </motion.button>
                 <button className="p-3 border border-slate-700 text-gray-300 hover:text-white rounded-lg">
                   <Heart size={20} />

@@ -1,8 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 const NavBar = () => {
+  const navigate = useNavigate();
+  const { totalItems } = useCart();
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -44,13 +49,23 @@ const NavBar = () => {
           </NavLink>
         </nav>
 
-        {/* Call to Action Button */}
+        {/* Cart Button */}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="hidden md:inline-block px-5 py-2 bg-slate-800 border border-slate-700 rounded-full text-white hover:bg-slate-700 transition-colors duration-300"
+          onClick={() => navigate('/cart')}
+          className="relative p-2 text-gray-300 hover:text-white transition-colors duration-300"
         >
-          Get Started
+          <ShoppingCart size={24} />
+          {totalItems > 0 && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="absolute -top-2 -right-2 bg-cyan-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+            >
+              {totalItems}
+            </motion.span>
+          )}
         </motion.button>
       </div>
     </motion.header>

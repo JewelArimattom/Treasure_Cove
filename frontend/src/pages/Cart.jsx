@@ -1,60 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag, ArrowRight, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getProductById, getFeaturedProducts } from '../data/products';
+import { getFeaturedProducts } from '../data/products';
+import { useCart } from '../context/CartContext';
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { cartItems, updateQuantity, removeItem, clearCart, subtotal } = useCart();
   
-  // Initialize cart with some sample items using static data
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      quantity: 2,
-    },
-    {
-      id: 4,
-      quantity: 1,
-    }
-  ]);
-
-  // Get full product data for cart items
-  const cartWithProductData = cartItems.map(cartItem => {
-    const product = getProductById(cartItem.id);
-    return {
-      ...product,
-      quantity: cartItem.quantity
-    };
-  });
-
-  // Calculate cart totals
-  const subtotal = cartWithProductData.reduce((total, item) => total + (item.price * item.quantity), 0);
+  // Calculate additional costs
   const shipping = subtotal > 0 ? 15.99 : 0;
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + shipping + tax;
-
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    
-    setCartItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-  };
-
-  const clearCart = () => {
-    setCartItems([]);
-  };
 
   // Get suggested products for empty cart and recommendations
   const suggestedProducts = getFeaturedProducts(4);
@@ -121,7 +79,7 @@ const Cart = () => {
               <h2 className="text-xl font-bold text-white mb-6">Cart Items ({cartItems.length})</h2>
               
               <AnimatePresence>
-                {cartWithProductData.map((item) => (
+                {cartItems.map((item) => (
                   <motion.div
                     key={item.id}
                     initial={{ opacity: 0, y: 20 }}
