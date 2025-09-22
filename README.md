@@ -16,7 +16,7 @@ Ahoy, Matey! Welcome to Treasure Cove - yer one-stop destination for digital plu
 2. Open terminal in the project directory
 3. Run: npm install
 4. Run: npm start
-5. Navigate to http://localhost:3000
+5. Navigate to http://localhost:3001
 
 🏴‍☠️ Features:
 - Immersive pirate theme with animations
@@ -26,7 +26,7 @@ Ahoy, Matey! Welcome to Treasure Cove - yer one-stop destination for digital plu
 - Custom pirate components
 
 🛠️ Technologies:
-- React.js 18
+- React.js 
 - Framer Motion (animations)
 - Tailwind CSS (styling)
 - Lucide React (icons)
